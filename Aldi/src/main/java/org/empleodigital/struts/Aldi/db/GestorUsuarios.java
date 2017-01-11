@@ -20,8 +20,8 @@ public class GestorUsuarios {
 
         Cliente cli=null;
         try{
-        	String select = "FROM Cliente WHERE usuario=:userName and password=:password";
-        	Query query=manager.createQuery(select);
+        	String select = "FROM Cliente WHERE usuario=:userName and password=:password"; 
+        	Query query=manager.createQuery(select);  
         	query.setParameter("userName", user);
         	query.setParameter("password", pwd);
         	
@@ -61,6 +61,7 @@ public class GestorUsuarios {
                 transaction.rollback();
             }
             // Print the Exception
+            
             ex.printStackTrace();
         } finally {
             // Close the EntityManager

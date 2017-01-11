@@ -1,10 +1,15 @@
 package org.empleodigital.struts.Aldi.actions;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.empleodigital.struts.Aldi.db.GestorUsuarios;
 import org.empleodigital.struts.Aldi.jpa.Main;
+import org.empleodigital.struts.Aldi.models.Cliente;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport {
@@ -14,8 +19,8 @@ public class LoginAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		if (GestorUsuarios.getCliente(user, pass) != null) {
-			HttpSession session = ServletActionContext.getRequest().getSession();
-			session.setAttribute("cliente", GestorUsuarios.getCliente(user, pass));
+			Map<String, Object> session = ActionContext.getContext().getSession();
+			session.put("cliente", GestorUsuarios.getCliente(user, pass));
 			return SUCCESS;
 		}
 		return ERROR;
