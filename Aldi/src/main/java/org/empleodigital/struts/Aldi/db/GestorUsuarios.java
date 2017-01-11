@@ -46,7 +46,7 @@ public class GestorUsuarios {
             transaction.begin();
 
             // Create a new Student object
-            Cliente cli = new Cliente(nombre,apellido1,apellido2,direccion,email,telefono,user,pwd);
+            Cliente cli = new Cliente(nombre,apellido1,apellido2,direccion,telefono,email,user,pwd);
 
             // Save the student object
             manager.persist(cli);

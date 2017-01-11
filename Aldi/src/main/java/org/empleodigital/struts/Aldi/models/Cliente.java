@@ -3,9 +3,11 @@ package org.empleodigital.struts.Aldi.models;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,6 +19,7 @@ public class Cliente implements Serializable{
 	private static final long serialVersionUID = 4440358923452332544L;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	@Column(name = "nombre",nullable=true)
@@ -35,12 +38,11 @@ public class Cliente implements Serializable{
 	private String usuario;
 	@Column(name = "password",nullable=false)
 	private String password;
-	@OneToMany(mappedBy="pedido")
+	@OneToMany(mappedBy="cliente",cascade=CascadeType.ALL)
 	private List<Pedido> pedidos;
 	
-	public Cliente(int id, String nombre, String apellido1, String apellido2, String direccion, int telefono,
-			String email, String usuario, String password, List<Pedido> pedidos) {
-		this.id = id;
+	public Cliente(String nombre, String apellido1, String apellido2, String direccion, int telefono,
+			String email, String usuario, String password) {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
@@ -49,7 +51,6 @@ public class Cliente implements Serializable{
 		this.email = email;
 		this.usuario = usuario;
 		this.password = password;
-		this.pedidos = pedidos;
 	}
 	
 	public Cliente() {
@@ -57,10 +58,6 @@ public class Cliente implements Serializable{
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getNombre() {

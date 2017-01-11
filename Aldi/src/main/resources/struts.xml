@@ -9,10 +9,7 @@
 
 	<package name="myPackage" extends="struts-default">
 
-		<action name="hello"
-			class="org.empleodigital.struts.Aldi.actions.RedirectAction">
-			<result name="success">/WEB-INF/content/hello.jsp</result>
-		</action>
+
 		<action name="login"
 			class="org.empleodigital.struts.Aldi.actions.LoginAction">
 			<result name="success">/WEB-INF/content/menu.jsp</result>
